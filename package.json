@@ -1,20 +1,20 @@
 {
-  "name": "@thienhuy337/rethinkdb-datatables",
+  "name": "rethinkdb-datatables",
   "version": "0.0.1",
-  "description": "rethinkdb query builder to be used with datatables",
+  "description": "rethinkdb query builder to be use with datatables",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
-    "url": "git://github.com/huythien91/rethinkdb-datatables.git"
+    "url": "git+https://github.com/huythien91/rethinkdb-datatables.git"
   },
   "keywords": [
     "rethinkdb",
     "datatables"
   ],
-  "author": "Huy Le",
+  "author": "Huy Le <thienhuy337@gmail.com>",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/huythien91/rethinkdb-datatables/issues"
