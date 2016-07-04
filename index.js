@@ -3,7 +3,7 @@ var RETHINKDB_DATATABLE = function() {
   
   /**
    * Special controller for datatable
-   * @function buildDataTableQuery
+   * @function buildDataTablesQuery
    * @param {object} params parsed parameters from datatables (check https://datatables.net/manual/server-side for more info)
    * @param {object} rethinkdb your rethinkdb driver
    * @param {object} tableSelectionQuery the table selection query (ie: r.db('example').table('test'))
@@ -20,7 +20,7 @@ var RETHINKDB_DATATABLE = function() {
    *  error: <optional: if an error occurs>
    * }
    */
-  this.buildDataTableQuery = function(params, rethinkdb, tableSelectionQuery, options, cb) {
+  this.buildDataTablesQuery = function(params, rethinkdb, tableSelectionQuery, options, cb) {
     var searchable = ('searchable' in options) ? options['searchable'] : null;
     var pluckable = ('pluckable' in options) ? options['pluckable'] : null;
     var primaryKey = ('primaryKey' in options) ? options['primaryKey'] : 'id';
