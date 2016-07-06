@@ -1,6 +1,6 @@
 {
   "name": "rethinkdb-datatables",
-  "version": "0.0.6",
+  "version": "0.0.7",
   "description": "rethinkdb query builder to be use with datatables",
   "main": "index.js",
   "scripts": {

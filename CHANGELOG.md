@@ -1,3 +1,8 @@
+##0.0.7 (2016-07-06)
+Bug fixes: 
+ - Fixed bug when returned data doesn't have DT_RowId
+ - Fixed search bug
+
 ##0.0.6 (2016-07-06)
 Bug fix:
  - Fixed ordering issue by applying order before pagination
