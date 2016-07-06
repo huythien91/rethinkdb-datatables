@@ -123,52 +123,56 @@ var RETHINKDB_DATATABLE = function() {
    * @returns {object} validated params
    */
   function validateDataTableParams (params, cb) {
-    var validated = {
-      draw: helper.validInt(params ,'draw'),
-      start: helper.validInt(params, 'start'),
-      length: helper.validInt(params, 'length'),
-      search: null,
-      order: [],
-      columns: []
-    };
+    try {
+      var validated = {
+        draw: helper.validInt(params ,'draw'),
+        start: helper.validInt(params, 'start'),
+        length: helper.validInt(params, 'length'),
+        search: null,
+        order: [],
+        columns: []
+      };
 
-    if(params['search']) {
-      validated['search'] = {};
-      validated['search']['regex'] = helper.validBoolean(params['search'], 'regex');
-      if (validated['search']['regex']) {
-        validated['search']['value'] = helper.regexEscape(params['search']['value']);
-      } else {
-        validated['search']['value'] = params['search']['value'];
+      if(params['search']) {
+        validated['search'] = {};
+        validated['search']['regex'] = helper.validBoolean(params['search'], 'regex');
+        if (validated['search']['regex']) {
+          validated['search']['value'] = helper.regexEscape(params['search']['value']);
+        } else {
+          validated['search']['value'] = params['search']['value'];
+        }
       }
-    }
 
-    if (!Array.isArray(params['order']) || params['order'].length === 0) {
-      return cb(new Error('Parameter order must be valid array'));
-    }
-
-    params['order'].forEach(function(order) {
-      var validDir = ['asc', 'desc'];
-      order['column'] = helper.validInt(order, 'column');
-      order['dir'] = helper.noEmpty(order, 'dir');
-      if (validDir.indexOf(order['dir']) < 0) {
-        return cb(new Error('Parameter order direction must be asc or desc'));
+      if (!Array.isArray(params['order']) || params['order'].length === 0) {
+        return cb(new Error('Parameter order must be valid array'));
       }
-      validated['order'].push(order);
-    });
 
-    if (!Array.isArray(params['columns']) || params['columns'].length === 0) {
-      return cb(new Error('Parameter column must be valid array'));
+      params['order'].forEach(function(order) {
+        var validDir = ['asc', 'desc'];
+        order['column'] = helper.validInt(order, 'column');
+        order['dir'] = helper.noEmpty(order, 'dir');
+        if (validDir.indexOf(order['dir']) < 0) {
+          return cb(new Error('Parameter order direction must be asc or desc'));
+        }
+        validated['order'].push(order);
+      });
+
+      if (!Array.isArray(params['columns']) || params['columns'].length === 0) {
+        return cb(new Error('Parameter column must be valid array'));
+      }
+
+      params['columns'].forEach(function(column) {
+        column['data'] = helper.noEmpty(column, 'data');
+        column['name'] = helper.noEmpty(column, 'name');
+        (column['searchable']) ? column['searchable'] = helper.validBoolean(column, 'searchable') : null;
+        (column['orderable']) ? column['orderable'] = helper.validBoolean(column, 'orderable') : null;
+          validated['columns'].push(column);
+      });
+
+      return cb(null, validated);
+    } catch (error) {
+      return cb(error);
     }
-
-    params['columns'].forEach(function(column) {
-      column['data'] = helper.noEmpty(column, 'data');
-      column['name'] = helper.noEmpty(column, 'name');
-      (column['searchable']) ? column['searchable'] = helper.validBoolean(column, 'searchable') : null;
-      (column['orderable']) ? column['orderable'] = helper.validBoolean(column, 'orderable') : null;
-        validated['columns'].push(column);
-    });
-
-    return cb(null, validated);
   }
 }
 
