@@ -1,3 +1,7 @@
+##0.0.6 (2016-07-06)
+Bug fix:
+ - Fixed ordering issue by applying order before pagination
+
 ##0.0.5 (2016-07-06)
 Bug fix:
  - Updated docs
