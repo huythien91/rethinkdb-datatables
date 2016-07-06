@@ -27,7 +27,7 @@ queryBuilder.buildDatatablesQuery(paramsFromDataTables, r, tableSelectionQuery, 
   res.run(conn, function(err, res) {
     conn.close();
     //Send response back depending on your framework
-  }
-}
+  });
+});
 ```
 
