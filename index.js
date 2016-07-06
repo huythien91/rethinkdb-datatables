@@ -80,14 +80,14 @@ var RETHINKDB_DATATABLE = function() {
           draw: validated['draw'],
           recordsTotal: tableSelectionQuery.count(),
           recordsFiltered: records.count(),
-          data: records.slice(validated['start'], validated['start'] + validated['length']).merge(function(row) {
+          data: records.orderBy(order).slice(validated['start'], validated['start'] + validated['length']).merge(function(row) {
             return {
               DT_RowId : row(primaryKey)
             }
           }).map(function(row) {
             return rethinkdb.expr(defaultRow).merge(row);
           })
-          .orderBy(order).pluck(rethinkdb.args(pluckable))
+          .pluck(rethinkdb.args(pluckable))
         }
       });
 
