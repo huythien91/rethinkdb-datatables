@@ -1,3 +1,7 @@
+##0.0.5 (2016-07-06)
+Bug fix:
+ - Updated docs
+
 ##0.0.4 (2016-07-06)
 Minor Change:
  - Updated docs
