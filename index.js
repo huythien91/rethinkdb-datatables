@@ -60,13 +60,13 @@ var RETHINKDB_DATATABLE = function() {
         if (validated['search']['regex'] && (validated['search']['regex'] === 'true' || validated['search']['regex'] == true)) {
           query = query.filter(function(record) {
             return rethinkdb.expr(searchable).map(function(key) {
-              return record(key).coerceTo('string').match(validated['search']['value']).ne(null)
+              return record(key).default('').coerceTo('string').match(validated['search']['value']).ne(null)
             }).contains(true)
           });
         } else {
           query = query.filter(function(record) {
             return rethinkdb.expr(searchable).map(function(key) {
-              return record(key).coerceTo('string').eq(validated['search']['value'])
+              return record(key).default('').coerceTo('string').eq(validated['search']['value'])
             }).contains(true)
           });
         }
