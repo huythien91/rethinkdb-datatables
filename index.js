@@ -2,23 +2,17 @@ var RETHINKDB_DATATABLE = function() {
   var helper = require('./helper');
   
   /**
-   * Special controller for datatable
+   * Build a rethinkdb query to extract data to be used by datatables
    * @function buildDataTablesQuery
-   * @param {object} params parsed parameters from datatables (check https://datatables.net/manual/server-side for more info)
-   * @param {object} rethinkdb your rethinkdb driver
-   * @param {object} tableSelectionQuery the table selection query (ie: r.db('example').table('test'))
-   * @param {object} options optional variables to ensure the functionality & security of our data
+   * @param {!object} params parsed parameters from datatables (check https://datatables.net/manual/server-side for more info)
+   * @param {!object} rethinkdb your rethinkdb driver
+   * @param {!object} tableSelectionQuery the table selection query (ie: r.db('example').table('test'))
+   * @param {?object} options optional variables to ensure the functionality & security of our data
    * @param {string[]} options.searchable array containing names of searchable fields in the table
    * @param {string[]} options.pluckable array containing names of pluckable fields (i.e. 'password' should not be pluckable)
    * @param {string} options.primaryKey the primary key name of the table (defaults to 'id')
-   * @param {function} cb the callback function
-   * @returns {
-   *  draw: <properly parsed draw param>,
-   *  recordsTotal: <total number of records in the database>,
-   *  recordsFiltered: <total records, after filtering>,
-   *  data: <the data to be displayed in the table>,
-   *  error: <optional: if an error occurs>
-   * }
+   * @param {!function} cb the callback function
+   * @returns {object} the query to be run
    */
   this.buildDataTablesQuery = function (params, rethinkdb, tableSelectionQuery, options, cb) {
     if (typeof options === 'function') {

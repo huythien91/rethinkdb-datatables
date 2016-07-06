@@ -21,17 +21,13 @@ var options = {
   primaryKey: 'someOtherKey'
 };
 
-//This try catch is stupid =)) I'll improve it later
-try {
-  queryBuilder.buildDatatablesQuery(paramsFromDataTables, r, tableSelectionQuery, options, function(err, res) {
-    if (err) return cb(err);
-    res.run(conn, function(err, res) {
-      conn.close();
-      //Send response back depending on your framework
-    }
+//No need for redundant try-catch anymore
+queryBuilder.buildDatatablesQuery(paramsFromDataTables, r, tableSelectionQuery, options, function(err, res) {
+  if (err) return cb(err);
+  res.run(conn, function(err, res) {
+    conn.close();
+    //Send response back depending on your framework
   }
-} catch(err) {
- console.log(err);
 }
 ```
 
