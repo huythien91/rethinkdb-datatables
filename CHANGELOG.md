@@ -1,3 +1,7 @@
+##0.0.4 (2016-07-06)
+Minor Change:
+ - Updated docs
+
 ##0.0.3 (2016-07-06)
 Bug fix:
  - Added try-catch in `validateDatatableParams` so we won't need to enclose `buildDataTablesQuery` with a redundant try-catch
