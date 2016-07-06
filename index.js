@@ -20,7 +20,11 @@ var RETHINKDB_DATATABLE = function() {
    *  error: <optional: if an error occurs>
    * }
    */
-  this.buildDataTablesQuery = function(params, rethinkdb, tableSelectionQuery, options, cb) {
+  this.buildDataTablesQuery = function (params, rethinkdb, tableSelectionQuery, options, cb) {
+    if (typeof options === 'function') {
+      cb = options;
+      options = {};
+    }
     var searchable = ('searchable' in options) ? options['searchable'] : null;
     var pluckable = ('pluckable' in options) ? options['pluckable'] : null;
     var primaryKey = ('primaryKey' in options) ? options['primaryKey'] : 'id';
@@ -54,7 +58,6 @@ var RETHINKDB_DATATABLE = function() {
             furtherPlucking.push(column['data']);
             defaultRow[column['data']] = '';
           }
-            
         });
         pluckable = furtherPlucking;
       }
