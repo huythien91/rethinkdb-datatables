@@ -46,7 +46,7 @@ var RETHINKDB_DATATABLE = function() {
           pluckable.push(column['data']);
         });
       } else {
-        var furtherPlucking = [];
+        var furtherPlucking = ['DT_RowId'];
         validated['columns'].forEach(function (column) {
           if (pluckable.indexOf(column['data']) > -1) {
             furtherPlucking.push(column['data']);
