@@ -46,7 +46,7 @@ var RETHINKDB_DATATABLE = function() {
           pluckable.push(column['data']);
         });
       } else {
-        var furtherPlucking = ['DT_RowId'];
+        var furtherPlucking = [];
         validated['columns'].forEach(function (column) {
           if (pluckable.indexOf(column['data']) > -1) {
             furtherPlucking.push(column['data']);
@@ -55,6 +55,8 @@ var RETHINKDB_DATATABLE = function() {
         });
         pluckable = furtherPlucking;
       }
+
+      pluckable.push('DT_RowId');
 
       if (validated['search'] && validated['search']['value']!=="") {
         if (validated['search']['regex'] && (validated['search']['regex'] === 'true' || validated['search']['regex'] == true)) {
