@@ -1,3 +1,7 @@
+##0.0.8 (2016-07-06)
+Bug fixes: 
+ - Fixed bug when returned data doesn't have DT_RowId when pluckable option is not provided
+
 ##0.0.7 (2016-07-06)
 Bug fixes: 
  - Fixed bug when returned data doesn't have DT_RowId
