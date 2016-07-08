@@ -64,7 +64,7 @@ var RETHINKDB_DATATABLE = function() {
           var regex = (regexCaseSensitive) ? validated['search']['value'] : '(?i)' + validated['search']['value'];
           query = query.filter(function(record) {
             return rethinkdb.expr(searchable).map(function(key) {
-              return record(key).default('').coerceTo('string').match(validated['search']['value']).ne(null)
+              return record(key).default('').coerceTo('string').match(regex).ne(null)
             }).contains(true)
           });
         } else {
