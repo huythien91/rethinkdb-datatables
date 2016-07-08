@@ -22,7 +22,7 @@ var RETHINKDB_DATATABLE = function() {
     var searchable = ('searchable' in options) ? options['searchable'] : null;
     var pluckable = ('pluckable' in options) ? options['pluckable'] : null;
     var primaryKey = ('primaryKey' in options) ? options['primaryKey'] : 'id';
-    var regexCaseSensitive = ('primaryKey' in options) ? validBoolean(options['regexCaseSensitive']) : false;
+    var regexCaseSensitive = ('regexCaseSensitive' in options) ? helper.validBoolean(options['regexCaseSensitive']) : false;
     var query = tableSelectionQuery;
 
     validateDataTableParams(params, function(err, validated) {
