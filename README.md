@@ -20,7 +20,8 @@ var tableSelectionQuery = r.db('test').table('example');
 var options = {
   searchable: ['id', 'field1', 'field2'],
   pluckable: ['id', 'field1', 'field3'],
-  primaryKey: 'someOtherKey'
+  primaryKey: 'someOtherKey',
+  regexCaseSensitive: false
 };
 
 //No need for redundant try-catch anymore

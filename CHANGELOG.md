@@ -1,3 +1,7 @@
+##0.0.9 (2016-07-07)
+Improvement:
+ - Added option `regexCaseSensitive` (boolean). Defaults to `false` if not specified
+
 ##0.0.8 (2016-07-06)
 Bug fixes: 
  - Fixed bug when returned data doesn't have DT_RowId when pluckable option is not provided
@@ -27,4 +31,3 @@ Bug fix:
 ##0.0.2 (2016-07-04)
 Breaking Change:
  - Renamed main function to `buildDataTablesQuery`;
-
