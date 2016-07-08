@@ -22,6 +22,7 @@ var RETHINKDB_DATATABLE = function() {
     var searchable = ('searchable' in options) ? options['searchable'] : null;
     var pluckable = ('pluckable' in options) ? options['pluckable'] : null;
     var primaryKey = ('primaryKey' in options) ? options['primaryKey'] : 'id';
+    var regexCaseSensitive = ('primaryKey' in options) ? validBoolean(options['regexCaseSensitive']) : false;
     var query = tableSelectionQuery;
 
     validateDataTableParams(params, function(err, validated) {
@@ -59,7 +60,8 @@ var RETHINKDB_DATATABLE = function() {
       pluckable.push('DT_RowId');
 
       if (validated['search'] && validated['search']['value']!=="") {
-        if (validated['search']['regex'] && (validated['search']['regex'] === 'true' || validated['search']['regex'] == true)) {
+        if (validated['search']['regex']) {
+          var regex = (regexCaseSensitive) ? validated['search']['value'] : '(?i)' + validated['search']['value'];
           query = query.filter(function(record) {
             return rethinkdb.expr(searchable).map(function(key) {
               return record(key).default('').coerceTo('string').match(validated['search']['value']).ne(null)
