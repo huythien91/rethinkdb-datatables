@@ -1,3 +1,7 @@
+##0.0.10 (2016-07-07)
+Bug fix:
+ - Fixed `regexCaseSensitive` bug
+
 ##0.0.9 (2016-07-07)
 Improvement:
  - Added option `regexCaseSensitive` (boolean). Defaults to `false` if not specified
