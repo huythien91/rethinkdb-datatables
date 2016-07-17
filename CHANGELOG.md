@@ -1,3 +1,7 @@
+##0.0.12 (2016-07-17)
+Improvement:
+ - Updated docs
+
 ##0.0.11 (2016-07-07)
 Bug fix:
  - Actually use `regexCaseSensitive` option
